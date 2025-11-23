@@ -2,7 +2,16 @@
 
 
 def split_before_uppercases(formula):
-    pass  # replace the pass with your code
+    up_list = []
+    start = 0
+    for case in list(range(start)):
+        if case.isupper():
+            start = formula[case]
+            if case.isupper():
+                end = formula[case]
+            up_list.extended(formula[start:end])
+            start += 
+            
 
 def split_at_digit(formula):
     pass  # replace the pass with your code
