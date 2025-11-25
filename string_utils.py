@@ -1,33 +1,33 @@
-
 def split_before_uppercases(formula):
-    up_list = []
-    currrent_part = ""
-    for char in formula:
-        if char.isupper() and current_part :
-            up_list.append(current_part)
-            current_part = char
-        else:
-            current_part += char
-    if current_part:
-        up_list.append(current_part)
-    return up_list 
+    start = 0
+    end = 1
+    elements_lst = []
     
-        
+    if not formula:
+        return elements_lst
+
+    while end < len(formula):
+        if formula[end].isupper():
+            elements_lst.append(formula[start:end])
+            start = end
+        end+=1  
+     
+    elements_lst.append(formula[start:])
+    
+    return elements_lst
+
 def split_at_digit(formula):
     for char_index, char in enumerate(formula):
         if char.isdigit():
             return formula[:char_index], int(formula[char_index:])
     return formula, 1
-  
 
 def count_atoms_in_molecule(molecular_formula):
-    my_dic = {} 
+    atoms_count_dict = {}
     for atom in split_before_uppercases(molecular_formula):
         atom_name, atom_count = split_at_digit(atom)
-        my_dic[atom_name] = my_dic.get(atom_name, 0) + atom_count
-    return my_dic
-
-
+        atoms_count_dict[atom_name] = atoms_count_dict.get(atom_name, 0) + atom_count    
+    return atoms_count_dict
 
 def parse_chemical_reaction(reaction_equation):
     """Takes a reaction equation (string) and returns reactants and products as lists.  
